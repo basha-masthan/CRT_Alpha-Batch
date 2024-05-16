@@ -4,6 +4,8 @@ int k[10][10];
 
 void trace(int,int);
 void diagonal(int,int);
+void up_triangle(int,int);
+void low_triangle(int,int);
 
 void main(){
     int n,m,i,j;
@@ -30,7 +32,8 @@ void main(){
 
     trace(n,m);
     diagonal(n,m);
-
+    up_triangle(n,m);
+    low_triangle(n,m);
 }
 
 
@@ -59,10 +62,28 @@ void diagonal(int n,int m){
 }
 
 void up_triangle(int n,int m){
-     int i,j,sum=0,k;
+    printf("\n Up_Triange Matrix \n");
+     int i,j,sum=0;
      for(i=0;i<n;i++){
         for(j=0;j<m;j++){
             if (i>j)
+                k[i][j]=0;
+        }
+    }
+     for(i=0;i<n;i++){
+        for(j=0;j<m;j++){
+            printf(" %d ",k[i][j]);
+        }
+         printf("\n");
+    }
+}
+
+void low_triangle(int n,int m){
+    printf("\n Low_Triange Matrix \n");
+     int i,j,sum=0;
+     for(i=0;i<n;i++){
+        for(j=0;j<m;j++){
+            if (i<j)
                 k[i][j]=0;
         }
     }
