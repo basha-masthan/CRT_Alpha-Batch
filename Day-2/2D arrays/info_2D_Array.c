@@ -63,16 +63,17 @@ void diagonal(int n,int m){
 
 void up_triangle(int n,int m){
     printf("\n Up_Triange Matrix \n");
-     int i,j,sum=0;
+     int i,j,sum=0,p[n][m];
      for(i=0;i<n;i++){
         for(j=0;j<m;j++){
+            p[i][j]=k[i][j];
             if (i>j)
-                k[i][j]=0;
+                p[i][j]=0;
         }
     }
      for(i=0;i<n;i++){
         for(j=0;j<m;j++){
-            printf(" %d ",k[i][j]);
+            printf(" %d ",p[i][j]);
         }
          printf("\n");
     }
@@ -80,16 +81,17 @@ void up_triangle(int n,int m){
 
 void low_triangle(int n,int m){
     printf("\n Low_Triange Matrix \n");
-     int i,j,sum=0;
+     int i,j,sum=0,p[i][j];
      for(i=0;i<n;i++){
         for(j=0;j<m;j++){
+            p[i][j]=k[i][j];
             if (i<j)
-                k[i][j]=0;
+                p[i][j]=0;
         }
     }
      for(i=0;i<n;i++){
         for(j=0;j<m;j++){
-            printf(" %d ",k[i][j]);
+            printf(" %d ",p[i][j]);
         }
          printf("\n");
     }

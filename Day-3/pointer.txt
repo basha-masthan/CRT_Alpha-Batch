@@ -1,0 +1,46 @@
+Pointers...
+
+int *ptr;   -->    * is de-refeared operator
+
+#include<stdio.h>
+
+void main(){
+    int a=10;                       ||      a=10    ||      &a    =  555          
+    int *ptr;                       ||      p=555   ||      &ptr  =  1000         
+    ptr=&a;                                     
+    printf("a = %d\n",a);           ||      a=10            
+    printf("&a = %d\n",&a);         ||      &a=555                    
+    printf("*(&a) = %d\n",*(&a));   ||      *(&a)=10                       
+    printf("ptr = %d\n",ptr);       ||      ptr=555
+    printf("*ptr = %d\n",*ptr);     ||      *ptr=10 
+    printf("&ptr = %d\n",&ptr);     ||      &ptr=1000
+}
+
+
+==========================
+||  Pointer Arithemetic ||
+==========================
+    { Base_address + value+datatype_size }
+
+p1 = 1000
+p1++ ==> p1+1 = 1004    {data type of 1 is 4}
+
+p2 = 2000
+p2+4  ==> p2+4 = 2016        
+
+==========================
+||   Pointer to Array   ||
+==========================
+
+                    0     1    2   3    4
+ptr = a         a | 10 | 20 | 30 | 40 | 50 |
+                   1000 1004 1008 1012 1016  
+
+ptr + i                                             
+---------
+1000 + 0*4  1000           p=&a[0]     
+1000 + 1*4  1004           p=a     
+1000 + 2*4  1008
+1000 + 3*4  1012    
+1000 + 4*4  1016
+
