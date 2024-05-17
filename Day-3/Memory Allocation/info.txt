@@ -1,0 +1,33 @@
+Generally we can allocate memory for a program in two ways
+--> At Compile Time
+--> At Run Time
+
+Suppose if you are allocated memory at compile Time of a program is called Static Memory Allocation
+This memory is of fixed size
+
+Suppose if you are allocated Memory at run time of a progam is called Dynamic memory alloaction (DMA)
+and the memory is of variable size
+
+In c programming for allocating and DeAllocating Memory we will use the following functins
+
+1) malloc()     }\   
+2) calloc()     } |=>  Memory allocation
+3) realloc()    }/
+4) free()       } => Memory DeAllocation
+
+
+## malloc()
+    -> Purpose: Allocate a single block of memory Dynamically
+    ->Synatx:   ptr=(int*)malloc(20);
+                ptr(int *)malloc(n*sizeof(int));
+    /a) Memory is created successfully, It retuns first byte address.
+    \b) Memory is Not created successfully, It retuns Null Pointer.
+
+    It returns a void pointer, So type casting is Mandatory.
+
+
+    |   15  |   25  |   35  |   50  |   10  |
+        100     104     108     112     116
+         ===
+    ptr |100|  ptr=null
+         ===
