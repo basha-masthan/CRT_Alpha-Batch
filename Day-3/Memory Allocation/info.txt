@@ -25,9 +25,24 @@ In c programming for allocating and DeAllocating Memory we will use the followin
 
     It returns a void pointer, So type casting is Mandatory.
 
-
+    _________________________________________
     |   15  |   25  |   35  |   50  |   10  |
         100     104     108     112     116
          ===
     ptr |100|  ptr=null
+         ===
+
+## malloc()
+    -> Purpose: Allocate a Multiple block of memory Dynamically
+    ->Synatx:   ptr(int *)calloc(n,sizeof(int));
+    /a) Memory is created successfully, It retuns first byte address.
+    \b) Memory is Not created successfully, It retuns Null Pointer.
+
+    It returns a void pointer, So type casting is Mandatory.
+
+    ________________________________________
+    \   15  \   25  \   35  \   50  \   10  \
+        100     104     108     112     116
+         ===
+  ptr = |100|  ptr=null
          ===

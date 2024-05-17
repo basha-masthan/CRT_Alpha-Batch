@@ -26,7 +26,6 @@ void prime_ind(int *p,int n){
     }
 }
 
-
 void main(){
     int n,i;          
     printf("Testing with function parameter passing");
