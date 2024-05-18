@@ -1,0 +1,70 @@
+A structure is a collection of elements of different data_types
+
+struct is a keyword used to define structure..
+
+______________________________: structure Template
+<keyword> <tag_name>
+ struct    student
+ {
+    char name;      \                           |     data_type Member1;
+    int roll_num;    | => structure Members     |     data_type Member2;  
+    float gpa;       /                           |     data_type Member3;  
+ };
+
+_________Types_OF_____________
+structure Variable decleration
+__________
+Method - 1                      
+                                        ______________        
+struct std                              Initialization
+{
+    char name[20];    
+    int roll_num; 
+    float gpa;    
+}s1,s2;                     ||      s1={"basha",596,75.5};
+__________
+Method - 2
+
+struct std
+{
+    char name[20];    
+    int roll_num; 
+    float gpa;    
+};struct std s1,s2;         ||    struct std s1={"basha",596,75.5};
+__________
+Method - 3
+
+struct
+{
+    char name[20];    
+    int roll_num; 
+    float gpa;    
+};struct std s1,s2;         ||    struct std s1={"basha",596,75.5};
+__________
+Method - 4
+
+typedef struct
+{
+    char name[20];    
+    int roll_num; 
+    float gpa;    
+};
+std s1,s2;                  ||      std s1={"basha",596,75.5};(Basha);
+
+
+========================================================
+________________nested__Structure_______________________
+
+
+        struct DOB
+        {  
+        int dd;  
+        int mm;  
+        int yyyy;   
+        };  
+        struct std  
+        {     
+        char name[20];  
+        int roll;  
+        struct DOB doj;  
+        }s1;  
