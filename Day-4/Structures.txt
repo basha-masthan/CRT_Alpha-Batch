@@ -68,3 +68,13 @@ ________________nested__Structure_______________________
         int roll;  
         struct DOB doj;  
         }s1;  
+
+
+
+==========================================================
+__perameter_passing_methods_in_strucures_using_functions__
+
+1) Passing individual members of a structure as perameters.
+2) Passing structure Variable as a perameter.
+3) Passing addres of a strutuer as perameter.
+

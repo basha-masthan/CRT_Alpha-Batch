@@ -1,0 +1,10 @@
+_________________________________
+      Enumaration : 'enum'
+
+syntax :                            example:
+enum <tag_name>                     enum day
+{                                   {
+    var1,var2,var3,....                 sun,mon,tue,wed,thu,fri,sat;
+};                                  };
+
+
