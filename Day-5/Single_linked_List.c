@@ -11,20 +11,21 @@ NODE *head=NULL;
 void Creation(){
     int i,n,val;
     NODE *newnode,*temp;
-    newnode = (NODE *)malloc(sizeof(NODE));
     scanf("%d",&n);
     for(i=0;i<n;i++){
+        newnode = (NODE *)malloc(sizeof(NODE));
         scanf("%d",&val);
         newnode->data=val;
         newnode->link = NULL;
         if(head == NULL)
-        {   head=newnode; }
+        {   head=newnode;}
         else{
             temp = head;
             while(temp->link != NULL){
                 temp=temp->link;
             }
-            temp->link=newnode;
+                // newnode->link=temp;
+            temp->link = newnode;
         }
     }
 }
@@ -32,7 +33,6 @@ void Creation(){
 void Traversal()
 {
     NODE *temp;
-
     if(head==NULL)
     {     printf("List is empty"); return; }
     else
@@ -40,10 +40,10 @@ void Traversal()
        temp=head;
        while(temp!=NULL)
        {
-        printf("%d",temp->data);
+        printf("%d ",temp->data);
         temp=temp->link;
        }
-       printf("NULL");
+    //    printf("NULL");
     }
 }
 
@@ -67,9 +67,10 @@ void insert_at_begin(){
 void Insertion(){
     NODE *newnode,*temp;
     newnode = (NODE *)malloc(sizeof(NODE));
-
+    int val;
     // printf("");
-    scanf("%d",newnode->data);
+    scanf("%d",&val);
+    newnode->data=val;
     newnode->link = NULL;
     if(head == NULL)
         head = newnode;
@@ -102,6 +103,9 @@ void Deletion(){
     if(head==NULL){
         printf("LIst is empty");
     }
+    else if (head->link==NULL){
+        head=NULL;
+    }
     else{
         temp = head;
         pre = head;
@@ -110,18 +114,24 @@ void Deletion(){
             temp = temp->link;
         }
         pre->link = NULL;
+        free(temp);
     }
 }
 
 
-void mian(){
+void main(){
     int c,n;
     while(1){
         printf("\n\n\t Main Menu \n 0.Creation \n 1.Insertion \n 2.Deletion \n 3.Display \n 4.exit\n");
         scanf("%d",&c);
         switch(c){
             case 0: printf("\n Creation of Node ");
-                    Creation(); break;
+            if (head==NULL)
+                    Creation();
+            else{
+                printf("LIst Already exists...");
+            }
+                    break;
             case 1: Insertion(); break;
             case 2: Deletion(); break;
             case 3: Traversal(); break;
