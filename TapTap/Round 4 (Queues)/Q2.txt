@@ -1,0 +1,120 @@
+QUEUES USING LINKEDLIST:
+=============================
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAXSIZE 100
+
+struct node  
+{
+    int info;
+    struct node *ptr;
+} *newn, *temp, *temp1, *front = NULL, *rear = NULL;
+
+typedef struct node N;
+
+void enqueue();
+void dequeue();
+void display();
+int getfront();
+int getrear();
+int isempty();
+
+void main() {
+    int ch;
+    while (1) {
+        // printf("\n Main Menu \n 1.EnQueue \n 2.DeQueue \n 3.Display \n 4.Get Front \n 5.Get Rear \n 6.Is Empty \n 7.Exit \n\n Enter an option:");
+        scanf("%d", &ch);
+        switch (ch) {
+            case 1:
+                enqueue();
+                break;
+            case 2:
+                dequeue();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                printf("%d\n", getfront());
+                break;
+            case 5:
+                printf("%d\n", getrear());
+                break;
+            case 6:
+                printf("Queue is %s\n", isempty() ? "empty" : "not empty");
+                break;
+            case 7:
+                exit(0);
+            default:
+                printf("Invalid choice\n");
+                break;
+        }
+    }
+}
+
+void enqueue() {
+    int ele;
+    newn = (N*)malloc(sizeof(N));
+    if (newn == NULL) {
+        printf("Memory allocation failed.\n");
+        return;
+    }
+    //printf("\nEnter the element: ");
+    scanf("%d", &ele);
+    newn->info = ele;
+    newn->ptr = NULL;
+    if (rear == NULL) {
+        front = rear = newn;
+    } else {
+        rear->ptr = newn;
+        rear = newn;
+    }
+}
+
+void dequeue() {
+    if (front == NULL) {
+        printf("\nQueue is empty\n");
+    } else {
+        temp1 = front;
+        printf("%d\n", temp1->info);
+        front = front->ptr;
+        if (front == NULL) {
+            rear = NULL;
+        }
+        free(temp1);
+    }
+}
+
+void display() {
+    if (front == NULL) {
+        printf("\nQueue is empty\n");
+    } else {
+        temp = front;
+        while (temp != NULL) {
+            printf("%d ", temp->info);
+            temp = temp->ptr;
+        }
+    }
+}
+
+int getfront() {
+    if (isempty()) {
+        printf("\nQueue is empty\n");
+        return -1;
+    }
+    return front->info;
+}
+
+int getrear() {
+    if (isempty()) {
+        printf("\nQueue is empty\n");
+        return -1;
+    }
+    return rear->info;
+}
+
+int isempty() {
+    return front == NULL;
+}

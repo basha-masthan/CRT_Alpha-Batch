@@ -47,34 +47,22 @@ void Traversal()
     }
 }
 
-void insert_at_begin(){
-    NODE *newnode,*temp;
-    newnode = (NODE *)malloc(sizeof(NODE));
-
-    printf("Enter data:");
-    scanf("%d",newnode->data);
-    newnode->link = NULL;
-    if(head == NULL)
-        head = newnode;
-
-    else{
-        newnode->link=head;
-        head=newnode;
-    }   
-    temp->link=newnode;
-}
 
 void Insertion(){
     NODE *newnode,*temp;
     newnode = (NODE *)malloc(sizeof(NODE));
-    int val;
+    int val,pos;
     // printf("");
-    scanf("%d",&val);
+    scanf("%d %d",&val,&pos);
     newnode->data=val;
     newnode->link = NULL;
     if(head == NULL)
         head = newnode;
-
+    else if(pos==1)
+    {
+        newnode->link=head;
+        head=newnode;
+    }
     else{
         temp = head;
         while(temp->link!=NULL){
@@ -122,10 +110,10 @@ void Deletion(){
 void main(){
     int c,n;
     while(1){
-        printf("\n\n\t Main Menu \n 0.Creation \n 1.Insertion \n 2.Deletion \n 3.Display \n 4.exit\n");
+     //   printf("\n\n\t Main Menu \n 0.Creation \n 1.Insertion \n 2.Deletion \n 3.Display \n 4.exit\n");
         scanf("%d",&c);
         switch(c){
-            case 0: printf("\n Creation of Node ");
+            case 0:// printf("\n Creation of Node ");
             if (head==NULL)
                     Creation();
             else{

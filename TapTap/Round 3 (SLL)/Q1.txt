@@ -1,0 +1,155 @@
+//
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct Node 
+{
+    int data;
+    struct Node* link;
+};
+
+
+struct Node* createNode(int data) 
+{
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    if (newNode == NULL)  
+    {
+        printf("Memory allocation failed.\n");
+        exit(1);
+    }
+    newNode->data = data;
+    newNode->link = NULL;
+    return newNode;
+}
+
+// Function to insert a node at a specified position in the singly linked list
+void insertNode(struct Node** head, int data, int position) 
+{
+    struct Node* newNode = createNode(data);
+    
+    
+    if (*head == NULL || position <= 1)
+    {
+        newNode->link = *head;  
+        *head = newNode;       
+        return;                 
+    }
+    
+    
+    struct Node* temp = *head;
+    for (int i = 1; i < position - 1 && temp != NULL; i++) 
+    {
+        temp = temp->link;      
+    }
+    
+    
+    if (temp == NULL) 
+    {
+        printf("Invalid position. Insertion failed.\n");
+        return;                
+    }
+    newNode->link = temp->link; 
+    temp->link = newNode;       
+}
+
+void deleteNode(struct Node** head, int position) 
+{
+   
+    if (*head == NULL) 
+    {
+        printf("Singly linked list is empty.\n");
+        return;
+    }
+    struct Node* temp = *head;
+    if (position == 1) 
+    {
+        *head = temp->link; 
+        free(temp);         
+        return;           
+    }
+    for (int i = 1; temp != NULL && i < position - 1; i++) 
+    {
+        temp = temp->link;  // Move to the next node
+    }
+    if (temp == NULL || temp->link == NULL) 
+    {
+        printf("Invalid position. Deletion failed.\n");
+        return;             
+    }
+
+    struct Node* nodeToDelete = temp->link;
+    temp->link = temp->link->link;
+    free(nodeToDelete);
+}
+
+void traverseList(struct Node* head) 
+{
+    struct Node* temp = head;
+    while (temp != NULL) 
+    {
+        printf("%d ", temp->data);
+        temp = temp->link;
+    }
+    printf("\n");
+}
+
+
+struct Node* createList(int n)  
+{
+    struct Node* head = NULL;
+    int data;
+    for (int i = 0; i < n; i++) 
+    {
+        scanf("%d", &data);
+        insertNode(&head, data, i + 1);
+    }
+    return head;
+}
+
+int main() 
+{
+    struct Node* head = NULL;
+    int choice, data, position, n;
+       /* printf("Singly Linked List Operations:\n");
+        printf("1.Create\n");
+        printf("2.Insert\n");
+        printf("3.Delete\n");
+        printf("4.Display\n");
+        printf("5.Exit\n");*/
+    while (1) 
+    {
+
+        //printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) 
+        {
+            case 1:
+               //printf("Enter the number of nodes: ");
+                scanf("%d", &n);
+                head = createList(n);
+                break;
+            case 2:
+                scanf("%d", &data);
+                scanf("%d", &position);
+                insertNode(&head, data, position);
+                break;
+            case 3:
+                //printf("Enter position of node to delete: ");
+                scanf("%d", &position);
+                deleteNode(&head, position);
+                break;
+            case 4:
+                traverseList(head);
+                break;
+            case 5:
+                exit(0);
+            default:
+                printf("Invalid choice\n");
+        }
+    }
+
+    return 0;
+}

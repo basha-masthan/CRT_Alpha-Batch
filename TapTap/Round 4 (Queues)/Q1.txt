@@ -1,3 +1,14 @@
+// C program that uses arrays to implement a queue with the following operations:
+
+// 1. Enqueue (Insertion)
+// 2. Dequeue (Deletion)
+// 3. Display
+// 4. Get Front
+// 5. Get Rear
+// 6. Is Empty
+// 7. Is Full
+// 8. Exit
+
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX 10
@@ -27,7 +38,7 @@ void dequeue(){
         if(front==rear)
             front=rear=-1;
     }
-    printf("%d",temp);
+  printf("%d",temp);
     printf("\n");
 }
 
@@ -54,11 +65,10 @@ void isfull(){
         printf("Queue is Full");
 }
 
-
 void main(){
     int ch;
     while(1){
-       // printf("\n Main Menu \n 1.EnQueue \n 2.DeQueue \n 3.Display \n 4.Exit \n\n Enter an option:");
+        //printf("\n Main Menu \n 1.EnQueue \n 2.DeQueue \n 3.Display \n 4.Exit \n\n Enter an option:");
         scanf("%d",&ch);
         switch (ch)
         {

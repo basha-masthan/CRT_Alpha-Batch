@@ -1,0 +1,33 @@
+//  C Program to perform Binary Search by using recursive function.
+
+#include <stdio.h>
+
+int Binry(int a[],int low,int high,int key){
+	if (low> high)
+		return -1;
+	int mid = (low+high)/2;
+	if (key < a[mid])
+		return Binry(a,low,mid-1,key);
+	else if(key > a[mid])
+		return Binry(a,mid+1,high,key);
+	else 
+		return mid;
+} 
+int main()
+{
+	int n,res,i;
+//printf("Enter size of array:"); 
+scanf("%d",&n);
+	int arr[n],key;
+//	printf("Array elements:");
+	for(i=0;i<n;i++)	scanf("%d",&arr[i]);
+//	printf("Enter search element:");	
+
+scanf("%d",&key);
+	res = Binry(arr,0,n,key);
+	if(res != -1)	
+		printf("%d",res);
+	else
+		printf("Element Not Found....");
+	return 0;
+}
