@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct Node 
+{
+    int value;
+    struct Node *left;
+    struct Node *right;
+};
+struct Node* createNode(int value) 
+{
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->value = value;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+struct Node* inserNode(struct Node* root, int value) 
+{
+    if (root == NULL) 
+        return createNode(value);
+
+    if (value <= root->value) 
+        root->left = inserNode(root->left, value);
+
+    else if (value >= root->value) 
+        root->right = inserNode(root->right, value);
+
+    return root;
+}
+
+// in-order traversal
+void inorderTraversal(struct Node* root) 
+{
+    if (root != NULL) 
+    {
+        inorderTraversal(root->left);
+        printf("%d ", root->value);
+        inorderTraversal(root->right);
+    }
+}
+
+int main() 
+{
+    struct Node* root = NULL;
+    int value;
+
+    //printf("Enter integers to insert into the binary tree (end with -1):\n");
+    while (1) 
+    {
+        scanf("%d", &value);
+        switch (value) 
+        {
+            case -1:	// value to end the input
+                	//printf("Binary Tree elements: ");
+                	inorderTraversal(root);
+                	printf("\n");
+                	return 0;
+            default:	if (value > 0 && value < 106) 
+                    		root = inserNode(root, value);
+                	else 
+                    		printf("Value out of range (0 < value < 106). Please try again.\n");
+                	break;
+        }
+    }
+return 0;
+
+}
