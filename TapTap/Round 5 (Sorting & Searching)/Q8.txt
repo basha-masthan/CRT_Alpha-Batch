@@ -1,0 +1,55 @@
+// C program that implements the Quick Sort algorithm to sort a given list of integers in ascending order.
+
+#include<stdio.h>
+void quick_sort(int a[],int low,int high)
+{
+    int i,j,p,temp;
+    if(low<high)
+    {
+        p=low;
+        i=low;
+        j=high;
+        while(i<j)
+        {
+            while(a[i]<=a[p])
+            {
+                i++;
+            }
+            while(a[j]>a[p])
+            {
+                j--;
+            }
+            if(i<j)
+            {
+                temp=a[i];
+                a[i]=a[j];
+                a[j]=temp;
+            }
+        }
+        temp=a[p];
+        a[p]=a[j];
+        a[j]=temp;
+        p=j;
+        quick_sort(a,0,p-1);
+        quick_sort(a,p+1,high);
+    }
+}
+
+void main()
+{
+    int n,i;
+    //printf("Enter no. of elements:");
+    scanf("%d",&n);
+    int a[n];
+    //printf("Enter elements:");
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    quick_sort(a,0,n-1);
+    //printf("sorted elements are:");
+    for(i=0;i<n;i++)
+    {
+        printf("%d ",a[i]);
+    }
+}

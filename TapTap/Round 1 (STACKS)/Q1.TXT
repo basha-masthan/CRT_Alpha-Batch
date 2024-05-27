@@ -14,7 +14,6 @@ satck[++top]=val;
 int pop(){
     return satck[top--];
 }
-
 void postfix(char post[]){
     int i,A,B,C;
     for(i=0;post[i] != '\0';i++){

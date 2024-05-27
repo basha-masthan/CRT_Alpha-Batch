@@ -64,4 +64,8 @@ int main()
     }
 return 0;
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a2ca082cbd964f90e8b73ffaca76913c8235c3fd
