@@ -184,7 +184,9 @@ else
 5. armstrong number
 
 #include <stdio.h>
-int main() {
+
+int main()
+{
     int num, originalNum, remainder, result = 0;
     printf("Enter a three-digit integer: ");
     scanf("%d", &num);
