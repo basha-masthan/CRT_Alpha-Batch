@@ -130,7 +130,7 @@ int main()
                     printf("BST is empty.\n");
                 else 
                 {
-                    printf("Enter integer to insert into the BST: ");
+                    //printf("Enter integer to insert into the BST: ");
                     scanf("%d", &value);
                     if (value == -1) 
                         exit(0);
@@ -142,7 +142,7 @@ int main()
                 }
                 break;
             case 3:
-                printf("Enter integer to delete from the BST: ");
+               // printf("Enter integer to delete from the BST: ");
                 scanf("%d", &value);
                 if (value == -1) 
                     exit(0);
@@ -150,7 +150,7 @@ int main()
                 printf("Value deleted from BST.\n");
                 break;
             case 4:
-                printf("BST elements: ");
+               // printf("BST elements: ");
                 inorderTraversal(root);
                 printf("\n");
                 break;

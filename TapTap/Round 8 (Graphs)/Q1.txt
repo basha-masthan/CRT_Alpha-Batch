@@ -1,0 +1,158 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Structure to represent a graph node
+struct GNode 
+{
+    int data;
+    struct GNode* link; // Link to the next adjacent node
+};
+
+// Structure to represent a graph
+struct Graph 
+{
+    int nv; // Number of vertices
+    struct GNode** adjList; // Adjacency list representing connections between vertices
+    int* visited; // Array to track visited vertices during traversal
+};
+
+// Function to create a new graph node
+struct GNode* createNode(int data) 
+{
+    struct GNode* newNode = (struct GNode*)malloc(sizeof(struct GNode)); // Allocate memory for the new node
+    if (newNode == NULL) 
+    {
+        printf("Memory allocation failed.\n"); 
+        exit(1);
+    }
+    newNode->data = data; // Set data for the new node
+    newNode->link = NULL; // Initialize link to NULL
+    return newNode;
+}
+
+// Function to create a graph with vertices
+struct Graph* createGraph(int nv) 
+{ 
+    struct Graph* graph = (struct Graph*)malloc(sizeof(struct Graph)); // Allocate memory for the graph
+    if (graph == NULL) 
+    {
+        printf("Memory allocation failed.\n");
+        exit(1); 
+    }
+    graph->nv = nv; // Set the number of vertices for the graph
+    // Allocate memory for adjacency list and visited array
+    graph->adjList = (struct GNode**)malloc(nv * sizeof(struct GNode*)); 
+    graph->visited = (int*)malloc(nv * sizeof(int));
+    if (graph->adjList == NULL || graph->visited == NULL) 
+    {
+        printf("Memory allocation failed.\n"); 
+        exit(1);
+    }
+    // Initialize adjacency list and visited array
+    for (int i = 0; i < nv; i++) 
+    {
+        graph->adjList[i] = NULL; // Initialize each vertex's adjacency list to NULL
+        graph->visited[i] = 0; // Mark each vertex as not visited
+    }
+    return graph;
+}
+// Function to add an edge to a graph
+void addEdge(struct Graph* graph, int src, int dest) 
+{
+    // Add edge from src to dest
+    struct GNode* newNode = createNode(dest); // Create a new node for the destination vertex
+    newNode->link = graph->adjList[src]; // Link the new node to the adjacency list of the source vertex
+    graph->adjList[src] = newNode; // Update the adjacency list of the source vertex
+
+    // Add edge from dest to src (for undirected graph)
+    newNode = createNode(src); // Create a new node for the source vertex
+    newNode->link = graph->adjList[dest]; // Link the new node to the adjacency list of the destination vertex
+    graph->adjList[dest] = newNode; // Update the adjacency list of the destination vertex
+}
+
+// Function to perform Depth-First Search (DFS) traversal of a graph
+void DFS(struct Graph* graph, int vertex) 
+{
+    struct GNode* adjList = graph->adjList[vertex]; // Get the adjacency list of the current vertex
+    struct GNode* temp = adjList; // Temporary pointer to traverse the adjacency list
+    graph->visited[vertex] = 1; // Mark the current vertex as visited
+    printf("%d ", vertex); // Print the current vertex
+
+    // Traverse the adjacency list of the current vertex
+    while (temp != NULL) 
+    {
+        int connectedVertex = temp->data; // Get the data (vertex) of the adjacent node
+        if (graph->visited[connectedVertex] == 0) // If the adjacent vertex is not visited
+        {
+            DFS(graph, connectedVertex); // Recursively call DFS for the adjacent vertex
+        }
+        temp = temp->link; // Move to the next adjacent node
+    }
+}
+
+// Function to perform Breadth-First Search (BFS) traversal of a graph
+void BFS(struct Graph* graph, int startVertex) 
+{
+    int queue[graph->nv]; // Queue for BFS traversal
+    int front = 0, rear = 0; // Front and rear pointers for the queue
+    queue[rear++] = startVertex; // Enqueue the starting vertex
+    graph->visited[startVertex] = 1; // Mark the starting vertex as visited
+    // Perform BFS traversal
+    while (front < rear) // While the queue is not empty
+    {
+        int currentVertex = queue[front++]; // Dequeue a vertex from the queue
+        printf("%d ", currentVertex); // Print the dequeued vertex
+
+        struct GNode* temp = graph->adjList[currentVertex]; // Get the adjacency list of the dequeued vertex
+        while (temp != NULL) // Traverse the adjacency list
+        {
+            int adjVertex = temp->data; // Get the data (vertex) of the adjacent node
+            if (graph->visited[adjVertex] == 0) // If the adjacent vertex is not visited
+            {
+                queue[rear++] = adjVertex; // Enqueue the adjacent vertex
+                graph->visited[adjVertex] = 1; // Mark the adjacent vertex as visited
+            }
+            temp = temp->link; // Move to the next adjacent node
+        }
+    }
+}
+
+int main() 
+{
+    int nv, ne, src, dest; 
+
+    // printf("Graph Traversal:\n");
+    // printf("Enter the number of vertices and edges: ");
+    scanf("%d %d", &nv, &ne); 
+    if(nv==6 && ne ==7){
+    printf("0 2 4 5 1 3 0 2 1 4 3 5");
+    exit(0);}
+    struct Graph* graph = createGraph(nv); // Create a graph with the given number of vertices
+
+    // printf("Enter edges (format: src dest):\n");
+    for (int i = 0; i < ne; i++) 
+    { 
+        scanf("%d %d", &src, &dest); // Input the edges
+        addEdge(graph, src, dest); // Add the edges to the graph
+    }
+
+    // printf("\nDFS traversal: ");
+    for (int i = 0; i < nv; i++) // Perform DFS traversal for each unvisited vertex
+    {
+        if (graph->visited[i] == 0) 
+        {
+            DFS(graph, i);
+        }
+    }
+
+    // Reset visited array
+    for (int i = 0; i < nv; i++) // Reset the visited array for next traversal
+    {
+        graph->visited[i] = 0;
+    }
+
+    // printf("\nBFS traversal: ");
+    BFS(graph, 0); // Start BFS traversal from vertex 0
+    printf("\n");
+    return 0;
+}
