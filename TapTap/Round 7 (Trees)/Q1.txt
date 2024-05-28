@@ -14,29 +14,87 @@ struct Node* createNode(int value)
     newNode->right = NULL;
     return newNode;
 }
-struct Node* inserNode(struct Node* root, int value) 
+struct Node* insert(struct Node* root, int value) 
 {
     if (root == NULL) 
         return createNode(value);
 
     if (value <= root->value) 
-        root->left = inserNode(root->left, value);
+        root->left = insert(root->left, value);
 
     else if (value >= root->value) 
-        root->right = inserNode(root->right, value);
+        root->right = insert(root->right, value);
 
     return root;
 }
 
-// in-order traversal
+struct Node* minValueNode(struct Node* node) 
+{
+    struct Node* temp = node;
+    while (temp && temp->left != NULL) 
+    {
+        temp = temp->left;
+    }
+    return temp;
+}
+
+// Function to delete a node from BST
+struct Node* deleteNode(struct Node* root, int data) 
+{
+    if (root == NULL) 
+    {
+        return root;
+    }
+    if (data < root->data) 
+        root->left = deleteNode(root->left, data);
+    else if (data > root->data) 
+        root->right = deleteNode(root->right, data);
+    else 
+    {
+        // Node with only one child or no child
+        if (root->left == NULL) 
+        {
+            struct Node* temp = root->right;
+            free(root);
+            return temp;
+        } 
+        else if (root->right == NULL) 
+        {
+            struct Node* temp = root->left;
+            free(root);
+            return temp;
+        }
+        // Node with two children
+        struct Node* temp = minValueNode(root->right);
+        root->data = temp->data;
+        root->right = deleteNode(root->right, temp->data);
+    }
+    return root;
+}
+
+// Function to perform inorder traversal of BST and print the elements
 void inorderTraversal(struct Node* root) 
 {
     if (root != NULL) 
     {
         inorderTraversal(root->left);
-        printf("%d ", root->value);
+        printf("%d ", root->data);
         inorderTraversal(root->right);
     }
+}
+
+// Function to create BST with 'n' nodes
+struct Node* createBST(int n) 
+{
+    struct Node* root = NULL;
+    int i, data;
+    printf("Enter %d integers to create BST:\n", n);
+    for (i = 0; i < n; ++i) 
+    {
+        scanf("%d", &data);
+        root = insert(root, data);
+    }
+    return root;
 }
 
 int main() 
@@ -56,7 +114,7 @@ int main()
                 	printf("\n");
                 	return 0;
             default:	if (value > 0 && value < 106) 
-                    		root = inserNode(root, value);
+                    		root = insert(root, value);
                 	else 
                     		printf("Value out of range (0 < value < 106). Please try again.\n");
                 	break;
@@ -64,8 +122,5 @@ int main()
     }
 return 0;
 
-<<<<<<< HEAD
 }
-=======
 }
->>>>>>> a2ca082cbd964f90e8b73ffaca76913c8235c3fd

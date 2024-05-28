@@ -95,7 +95,7 @@ struct Node* createBST(int n)
 {
     struct Node* root = NULL;
     int i, data;
-   // printf("Enter %d integers to create BST:\n", n);
+    printf("Enter %d integers to create BST:\n", n);
     for (i = 0; i < n; ++i) 
     {
         scanf("%d", &data);
@@ -113,36 +113,36 @@ int main()
     while (1) 
     {
         int choice;
-       // printf("\n1. Create\n2. Insert\n3. Delete\n4. Display\n5. Exit\nEnter choice: ");
+        printf("\n1. Create\n2. Insert\n3. Delete\n4. Display\n5. Exit\nEnter choice: ");
         scanf("%d", &choice);
         switch (choice) 
         {
-            case 1:
-                if (root != NULL) 
-                {
-                    printf("Root node already exists!\n");
-                    break;
-                }
-              //  printf("Enter the number of nodes to create BST: ");
+            // case 1:  while (1) {
+            //  scanf("%d", &value);
+            //     if (value == -1) 
+            //      main();
+            // if (value > 0 && value < 1000) 
+            //     root = insert(root, value);
+            // break;
+            //     }
+            case 1: while (1)
+            {
                 scanf("%d", &value);
-                if (value <= 0) 
-                {
-                    printf("Invalid number of nodes!\n");
-                    break;
-                }
-                root = createBST(value); // Creating root node
-             //   printf("BST with %d nodes created.\n", value);
+                if(value >0 && value < 1000) {insert(root, value);}
+                if (value == -1) {main();}
+                else
+            }
                 break;
             case 2:
                 if (root == NULL)
                     printf("BST is empty.\n");
                 else 
                 {
-                //    printf("Enter integer to insert into the BST: ");
+                    printf("Enter integer to insert into the BST: ");
                     scanf("%d", &value);
                     if (value == -1) 
-                        exit(0);
-                    if (value > 0 || value <= 1000)
+                        break;
+                    if (value > 0 && value <= 1000)
                         insert(root, value); // Inserting value into the BST
                         //printf("Value inserted into BST.\n");
                     else 
@@ -150,20 +150,20 @@ int main()
                 }
                 break;
             case 3:
-          //      printf("Enter integer to delete from the BST: ");
+                printf("Enter integer to delete from the BST: ");
                 scanf("%d", &value);
                 if (value == -1) 
                     exit(0);
                 root = deleteNode(root, value);
-           //     printf("Value deleted from BST.\n");
+                printf("Value deleted from BST.\n");
                 break;
             case 4:
-              //  printf("BST elements: ");
+                printf("BST elements: ");
                 inorderTraversal(root);
                 printf("\n");
                 break;
             case 5:
-           //     printf("Exiting...\n");
+                printf("Exiting...\n");
                 exit(0);
             default:
                 printf("Invalid choice! Please enter a valid choice.\n");
