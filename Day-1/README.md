@@ -156,8 +156,8 @@ printf("Largest+Smallest is:%d \n",L)
 -----------------------------------------------------------------------------
 4.strong number
 
+{
 #include <stdio.h>
-
 void main()
 {
     int i,n,fact,sum,temp,rem, num;
@@ -178,6 +178,7 @@ if(sum == temp)
 else
    printf("%d is not a strong number",temp);
 }
+}
 -----------------------------------------------------------------------
 
 5. armstrong number
@@ -188,7 +189,6 @@ int main() {
     printf("Enter a three-digit integer: ");
     scanf("%d", &num);
     originalNum = num;
-
     while (originalNum != 0) {
        // remainder contains the last digit
         remainder = originalNum % 10;
@@ -206,5 +206,6 @@ int main() {
 
     return 0;
 }
+
 =================================================================
 6. ============REVERSE OF NUMBER============================
