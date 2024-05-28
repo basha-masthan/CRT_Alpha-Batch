@@ -184,8 +184,9 @@ else
 5. armstrong number
 
 #include <stdio.h>
-
 int main()
+
+
 {
     int num, originalNum, remainder, result = 0;
     printf("Enter a three-digit integer: ");
@@ -208,6 +209,7 @@ int main()
 
     return 0;
 }
+
 
 =================================================================
 6. ============REVERSE OF NUMBER============================
